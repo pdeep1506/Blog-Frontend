@@ -1,0 +1,51 @@
+.top{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+}
+.topleft{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+}
+.topcenter{
+
+}
+.topright{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.topList{
+    display:flex;
+    flex-direction: row;
+    
+}
+.topListItem{
+    padding: 5px;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    color: #444;
+}
+.accountIcon{
+    margin: 5px;
+    cursor: pointer;
+    color: #444;
+}
+.searchIcon{
+    margin: 5px;
+    color: #444;
+    cursor: pointer;
+}
