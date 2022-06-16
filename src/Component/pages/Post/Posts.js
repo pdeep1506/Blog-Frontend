@@ -1,22 +1,22 @@
 import React from 'react'
 import './Posts.css'
 import Post from './Post'
-const Posts = () => {
+const Posts = ({posts}) => {
   return (
     <div className='posts'>
-    
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
-    <Post></Post>
+    {
+      // console.log('posts',posts)
+      posts.map((item,key)=>{
+        return <Post post={item} key={key}></Post>
+      })
+      // posts.map((item)=>{
+      //   console.log('item',item)
+      //  return <Post Post={item}></Post>
+        
+      // })
+
+    }
+   
 
     
     </div>

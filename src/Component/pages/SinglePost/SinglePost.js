@@ -1,29 +1,53 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import './SinglePost.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import treeimg from '../../../Images/tree.jpg'
-const SinglePost = () => {
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import {Context} from '../../../context/Context'
+import axios from 'axios'
+const SinglePost = ({post}) => {
+  // console.log('post',post)
+  const {user} = useContext(Context)
+  const deletePost = async(id)=>{
+    try{
+      // console.log(id,user.username)
+        await axios.delete(`/api/post/${id}`,{ data:{ username: user.username}})
+        window.location.replace('/')
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className='singlePost'>
         <div className='singlePostWrapper'>
-            <img src={treeimg} className='singlePostImg' alt='post img'></img>
-            <h1 className='singlePostTitle'>Lorem2 djfkb   kbv bjksv </h1>
+        {
+          post[0].photo && (
+
+            <img src={post[0].photo} className='singlePostImg' alt='post img'></img>
+          )
+        }
+            <h1 className='singlePostTitle'>{post[0].title}</h1>
             <div className='singlePostIcon'>
                 <EditIcon className='singlePostIcons'></EditIcon>
-                <DeleteIcon className='singlePostIcons'></DeleteIcon>
+                <DeleteIcon className='singlePostIcons' onClick={()=> deletePost(post[0].nid)}></DeleteIcon>
             </div>
             <div className='singlePostInfo'>
-                <span className='singlePostAuthor'>Author: <b>Messi</b></span>
-                <span className='singlePostTime'>1 hr ago</span>
+                <span className='singlePostAuthor'>Author: <b>
+                <Link to={`/?username=${post[0].username}`} className='link'>
+                {post[0].username}
+                </Link>
+                </b>
+                </span>
+
+                <span className='singlePostTime'>{moment(post[0].createdAt).fromNow()}</span>
             </div>
             <div>
-            <p className='singlePostDesc'> fbdkbgduh  bugr erg bj  grerrshbtrbrh trh td thtfr erg 
-            Lectus ornare nunc, commodo, cum vivamus tincidunt neque lacus dolor. Libero nostra malesuada scelerisque sem donec, vivamus aenean penatibus duis rhoncus per duis blandit parturient sit purus iaculis imperdiet cum lacinia. Lectus nullam vulputate nullam per curae; interdum semper purus dis, parturient. Sollicitudin erat.
-            
-            Donec lectus. Interdum per sodales. Diam erat erat tortor neque volutpat. At. Interdum lectus habitant lacus risus dapibus. Adipiscing suscipit viverra posuere felis lacinia fusce mauris iaculis habitasse nibh penatibus, phasellus eu euismod viverra hymenaeos scelerisque. Montes vitae tortor laoreet cursus.
-            
-            Interdum amet vulputate curabitur Amet donec diam ullamcorper lorem arcu orci leo auctor per nostra.
+            <p className='singlePostDesc'>{
+              post[0].desc
+            }
             </p>
             </div>
             </div>

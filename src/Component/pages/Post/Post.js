@@ -1,21 +1,34 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Post.css'
 
-import treeImg from '../../../Images/tree.jpg'
-const Post = () => {
+// import treeImg from '../../../Images/tree.jpg'
+import moment from 'moment'
+const Post = ({post}) => {
+  // console.log(post)
   return (
     <div className='post'>
-      <img className='postImg' src={treeImg} alt='postImage'></img>
+    {
+      post.photo && (
+
+        <img className='postImg' src={post.photo} alt='postImage'></img>
+      )
+    }
       <div className='postInfo'>
         <div className='postCategories'>
-          <span className='postCat'>Music</span>
-          <span className='postCat'>Life</span>
-
-          <div className='postTitle'>This is the title space for blog post</div>
+        
+          { post.categories &&(
+            post.categories.map((i,key)=>{
+              return <span className='postCat' key={key}>{i} </span>
+            }))
+          }
+          <Link to={`/post/${post.nid}`} className='link'>
+          <div className='postTitle'>{post.title}</div>
+          </Link>
           <hr></hr>
-          <span className='postDate'>1 hr ago</span>
+          <span className='postDate'>{moment(post.createdAt).fromNow()}</span>
           <hr></hr>
-          <p className='postDesc'>lorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvslorem lore,mfxbvnjdf bjvfs  bjksv jkbsvd bkjdsv bkjsv bkjsdv rsgvs </p>
+          <p className='postDesc'>{post.desc}</p>
         </div>
       </div>
     </div>

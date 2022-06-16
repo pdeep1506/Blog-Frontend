@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import SearchIcon from '@mui/icons-material/Search';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -7,8 +7,13 @@ import GoogleIcon from '@mui/icons-material/Google';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 import './TopBar.css'
+import { Context } from '../../context/Context';
+
 const TopBar = () => {
-    const user = false;
+    const {user,dispatch} = useContext(Context);
+    const handleLogout = ()=>{
+        dispatch({type:'LOGOUT'})
+    }
   return (
     <div className='top'>
         <div className='topleft'>
@@ -34,9 +39,10 @@ const TopBar = () => {
                     
                     :<>
                     
-                    <li className='topListItem'><Link to='' style={{textDecoration:'none',color:'inherit'}}>LOGOUT</Link></li>
+                    <li className='topListItem'><Link to='' style={{textDecoration:'none',color:'inherit'}} onClick={()=>handleLogout()}>LOGOUT</Link></li>
                     </>
                 }
+              
             </ul>
                 </div>
         <div className='topright'>

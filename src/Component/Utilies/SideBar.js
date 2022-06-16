@@ -1,13 +1,29 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './SideBar.css'
 import aboutimg from '../../Images/aboutme.jpg'
 import FacebookIcon from '@mui/icons-material/Facebook';
-import SearchIcon from '@mui/icons-material/Search';
+
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GoogleIcon from '@mui/icons-material/Google';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+import axios from 'axios'
+import { Link } from 'react-router-dom';
 const SideBar = () => {
+  const [categories,setCategories]  = useState([]);
+  const fetchCategories = async()=>{
+    await axios.get('/api/category').then((res)=>{
+      // console.log(res)
+      setCategories(res.data)
+    })
+  }
+  
+  useEffect(()=>{
+    fetchCategories()
+  },[])
+  if(!categories){
+    return <div></div>
+  }
   return (
     <div className='slidebar'>
       <div className='slidebarItem'>
@@ -21,12 +37,18 @@ const SideBar = () => {
       <span className='sidebarTitle'>CATEGORIES
       </span>
       <ul className='sidebarList'>
-        <li className='sidebarListItem'>Life</li>
-        <li className='sidebarListItem'>Music</li>
-        <li className='sidebarListItem'>Style</li>
-        <li className='sidebarListItem'>Sport</li>
-        <li className='sidebarListItem'>Cinema</li>
-        <li className='sidebarListItem'>Tech</li>
+        
+       
+        {
+          categories.map((item,key)=>{
+            // console.log(item.name)
+            return <>
+            <Link className='link'  to={`?category=${item.name}`}>
+            <li className='sidebarListItem' key={key}>{item.name}</li>
+            </Link>
+            </>
+          })
+        }
 
       </ul>
       <span className='sidebarTitle'>FOLLOW US</span>

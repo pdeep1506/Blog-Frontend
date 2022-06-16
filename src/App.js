@@ -13,8 +13,10 @@ import Posts from './Component/pages/Post/Posts';
 import Post from './Component/pages/Post/Post';
 import SideBar from './Component/Utilies/SideBar';
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom'
+import { useContext } from 'react';
+import { Context } from './context/Context';
 function App() {
-  const user = false;
+  const {user} = useContext(Context);
   return (
     <>
       <BrowserRouter>
