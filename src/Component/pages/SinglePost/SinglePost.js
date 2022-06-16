@@ -32,6 +32,8 @@ const SinglePost = ({post}) => {
       })
       setupdatemode(false)
       setPostId(null)
+      settitle('')
+      setdesc('')
     }
     catch(err){
 
@@ -47,11 +49,13 @@ const SinglePost = ({post}) => {
           )
         }
         {
-          updatemode ? <input type='text' className='singlePostTitleInput' placeholder={post[0].title}  onChange={(e)=>settitle(e.target.value)}></input>:(<div>
+          updatemode ? <input type='text' className='singlePostTitleInput' value={title}  onChange={(e)=>settitle(e.target.value)}></input>:(<div>
             
             <h1 className='singlePostTitle'>{post[0].title}</h1>
             <div className='singlePostIcon'>
-                <EditIcon className='singlePostIcons' onClick={()=>{ setupdatemode(true); setPostId(post[0].nid)}}></EditIcon>
+                <EditIcon className='singlePostIcons' onClick={()=>{ setupdatemode(true); setPostId(post[0].nid);
+                  settitle(post[0].title); setdesc(post[0].desc)
+                }}></EditIcon>
                 <DeleteIcon className='singlePostIcons' onClick={()=> deletePost(post[0].nid)}></DeleteIcon>
             </div>
             </div>)
@@ -67,7 +71,7 @@ const SinglePost = ({post}) => {
                 <span className='singlePostTime'>{moment(post[0].createdAt).fromNow()}</span>
             </div>
             {
-              updatemode ? <textarea className='singlePostDescInput' onChange={(e)=> setdesc(e.target.value)} placeholder={post[0].desc} rows='5' cols='85'></textarea>:
+              updatemode ? <textarea className='singlePostDescInput' onChange={(e)=> setdesc(e.target.value)} value={desc} rows='5' cols='85'></textarea>:
               <div>
               
               <div>
