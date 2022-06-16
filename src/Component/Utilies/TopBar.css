@@ -18,6 +18,7 @@
     color: #444;
 }
 .topcenter{
+    /* flex: 6; */
 
 }
 .topright{
@@ -27,9 +28,9 @@
     align-items: center;
 }
 .topList{
-    display:flex;
-    flex-direction: row;
-    
+     display:flex;
+    flex-direction: row; 
+    /* display: inline-flex; */
 }
 
 .topListItem{

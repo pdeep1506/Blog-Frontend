@@ -28,7 +28,7 @@ const TopBar = () => {
                 <li className='topListItem'>
                 <Link to='/' style={{textDecoration:'none',color:'inherit'}}>HOME</Link></li>
                 <li className='topListItem'><Link to='/about' style={{textDecoration:'none',color:'inherit'}}>ABOUT</Link></li>
-                <li className='topListItem'><Link to='' style={{textDecoration:'none',color:'inherit'}}>CONTACT</Link></li>
+                
                 <li className='topListItem'><Link to='/write' style={{textDecoration:'none',color:'inherit'}}>WRITE</Link></li>
                 
                 {
