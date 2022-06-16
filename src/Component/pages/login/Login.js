@@ -7,6 +7,8 @@ const Login = () => {
   const [username, setusername] = useState();
   const [password, setpassword] = useState();
   const {user,dispatch,isFetching} = useContext(Context)
+  const [error, seterror] = useState(false)
+  const [errorType, seterrorType] = useState('')
   const handleSubmit = async(e)=>{
     e.preventDefault();
     dispatch({type:'LOGIN_STAER'});
@@ -14,9 +16,13 @@ const Login = () => {
       const res = await axios.post('/api/auth/login',{ username: username,password:password})
       // console.log(res.data)
       dispatch({type:'LOGIN_SUCCESS',payload:res.data})
+      
     }
     catch(err){
       dispatch({type:'LOGIN_FAILURE',payload:err})
+      // console.log(err.request.response)
+      seterror(true)
+      seterrorType(err.request.response)
     }
   }
   // console.log(user,isFetching)
@@ -34,6 +40,13 @@ const Login = () => {
             Register
             </Link>
             </button>
+            {error && (
+              <span
+                style={{ color: "red", textAlign: "center", marginTop: "20px" }}
+              >
+                {errorType}
+              </span>
+            )}
         </form>
     </div>
   )

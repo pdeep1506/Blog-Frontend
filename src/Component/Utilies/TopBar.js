@@ -33,21 +33,26 @@ const TopBar = () => {
                 
                 {
                     !user?
-                    <>
+                    <div>
                     <li className='topListItem'><Link to='/register' style={{textDecoration:'none',color:'inherit'}}>REGISTER</Link></li><li className='topListItem'><Link to='/login' style={{textDecoration:'none',color:'inherit'}}>LOGIN</Link></li>
-                    </>
+                    </div>
                     
-                    :<>
+                    :<div>
                     
                     <li className='topListItem'><Link to='' style={{textDecoration:'none',color:'inherit'}} onClick={()=>handleLogout()}>LOGOUT</Link></li>
-                    </>
+                    </div>
                 }
               
             </ul>
                 </div>
         <div className='topright'>
             <div className='accountIcon'>
-           { user && <AccountCircleIcon></AccountCircleIcon>}
+           { user &&
+            <Link to='settings'>
+            <AccountCircleIcon></AccountCircleIcon>
+            </Link>    
+        
+        }
             </div>
             <div className='searchIcon'>
                 <SearchIcon></SearchIcon>
