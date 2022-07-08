@@ -34,9 +34,9 @@ const Write = () => {
         <form className='writeForm' onSubmit={(e)=> onSumbitEvent(e)}>
             <div className='writeFormGroup'>
             <label htmlFor='fileInput'>
-                <UploadFileIcon className='writeIcon' onChange={(e)=>{setfile(e.target.files[0])}}></UploadFileIcon>
+                <UploadFileIcon className='writeIcon'></UploadFileIcon>
             </label>
-                <input type='file' id='fileInput' style={{display:'none'}}></input>
+                <input type='file' id='fileInput' style={{display:'none'}} onChange={(e)=>{setfile(e.target.files[0])}}></input>
                 <input type='text' placeholder='Title' className='writeInput' autoFocus={true} onChange={(e)=> settitle(e.target.value)}></input>
             </div>
             <div className='writeFormGroup'>
